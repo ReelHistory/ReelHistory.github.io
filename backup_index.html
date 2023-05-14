@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Reel History</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			line-height: 1.5;
+		}
+		
+		header {
+			background-color: #f2f2f2;
+			padding: 30px 10px;
+		}
+		
+		h1, h2, h3, h4, h5, h6 {
+			margin-top: 0;
+			margin-bottom: 0;
+			font-weight: normal;
+		}
+		
+		h1 {
+			font-size: 36px;
+		}
+		
+		h2 {
+			font-size: 24px;
+		}
+		
+		p {
+			margin-top: 10px;
+			margin-bottom: 30px;
+		}
+
+		.statements {
+			background-color: #fff;
+			padding: 20px;
+			margin-top: 30px;
+			margin-bottom: 30px;
+			text-align: center;
+			line-height: 1.5;
+			word-wrap: break-word;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		
+		.statements p {
+			margin: 0;
+		}
+		
+		footer {
+			background-color: #f2f2f2;
+			padding: 20px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Reel History</h1>
+		<h2>The Lost Archive of Juma Sultan and the Aboriginal Music Society</h2>
+		<h3>by Stephen Farina</h3>
+		<h4>Wesleyan University Press, 2012</h4>
+		<p>Questions/Inquiries: sdf954@proton.me</p>
+		<div class="statements">
+			<p>In the original ebook each chapter contained a brief audio
+                excerpt from Juma’s Archive and pages 6, 106, and 260
+                contained film excerpts of the Aboriginal Music Society
+                performing live in the early 1970’s.</p>
+		</div>
+        <div id="pageLinks"></div>
+	</header>
+
+    <main>
+        <script>
+            for (let i = 0; i <= 320; i++) {
+              document.write('<img src="images/Master Copy_img_' + i + '.jpg" class="page">');
+            }
+        </script>
+	</main>
+
+    <script>
+      // JavaScript code here
+      let links = [
+        {page: 6, label: "Part 1"},
+        {page: 105, label: "Part 2"},
+        {page: 259, label: "Part 3"}
+      ];
+
+      let pages = document.querySelectorAll('.page');
+      for (let i = 0; i < pages.length; i++) {
+        let pageNumber = i + 1;
+        pages[i].id = `page${pageNumber}`;
+
+        for (let j = 0; j < links.length; j++) {
+          if (pageNumber === links[j].page) {
+            let link = document.createElement('a');
+            link.href = `#page${pageNumber}`;
+            link.innerText = links[j].label;
+            document.getElementById('pageLinks').appendChild(link);
+            document.getElementById('pageLinks').appendChild(document.createTextNode(' | '));
+            break;
+          }
+        }
+      }
+    </script>
+	
+	<footer>
+		<p>&copy; 2023</p>
+	</footer>
+</body>
+</html>
