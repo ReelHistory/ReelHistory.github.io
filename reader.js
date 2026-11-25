@@ -19,6 +19,7 @@ const pages = [];
 let currentPage;
 let swipeStart;
 let scrollFrame;
+let scrollReference = 0;
 let hashTimer;
 
 document.querySelector('#page-total').textContent = 'of ' + pageCount;
@@ -88,9 +89,15 @@ function replacePageHash(page) {
   if (location.hash !== pageHash(page)) history.replaceState(null, '', pageHash(page));
 }
 
+function revealHeader() {
+  header.classList.remove('is-collapsed');
+  scrollReference = Math.max(0, window.scrollY);
+}
+
 function scrollToPage(page) {
   if (page === 1) window.scrollTo(0, 0);
   else pages[page - 1].scrollIntoView({ block: 'start', inline: 'nearest' });
+  revealHeader();
 }
 
 function goToPage(page) {
@@ -112,9 +119,17 @@ function goToPage(page) {
 
 function trackVisiblePage() {
   scrollFrame = null;
-  const readingLine = header.getBoundingClientRect().bottom + 16;
+  const position = Math.max(0, window.scrollY);
+  const scrollDistance = position - scrollReference;
+  if (position <= 16 || contents.open || header.querySelector(':focus-visible')) {
+    revealHeader();
+  } else if (Math.abs(scrollDistance) >= 16) {
+    header.classList.toggle('is-collapsed', scrollDistance > 0);
+    scrollReference = position;
+  }
 
-  // Find the last scan whose top has crossed the reading line below the sticky header.
+  // Keep the reading line steady while the header slides in or out.
+  const readingLine = header.offsetHeight + 16;
   let first = 0;
   let end = pages.length;
   while (first < end) {
@@ -218,6 +233,7 @@ function measureHeader() {
   document.body.style.setProperty('--reader-header-height', header.offsetHeight + 'px');
 }
 
+header.addEventListener('focusin', revealHeader);
 window.addEventListener('hashchange', syncLocation);
 window.addEventListener('scroll', () => {
   if (scrollFrame == null) scrollFrame = requestAnimationFrame(trackVisiblePage);

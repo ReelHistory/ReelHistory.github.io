@@ -136,7 +136,7 @@ button, input { font: inherit; }
 .subtitle {
   max-width: 21ch;
   margin-top: 1.5rem;
-  font: 400 clamp(1.35rem, 2.25vw, 2rem)/1.23 Georgia, serif;
+  font: 400 clamp(1.35rem, 2.25vw, 2rem)/1.23 var(--body);
   letter-spacing: -0.02em;
 }
 
@@ -317,6 +317,12 @@ h2 {
   position: sticky;
   z-index: 2;
   top: 0;
+}
+
+.reader-header.is-collapsed:not(:has(:focus-visible)) { transform: translateY(-100%); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .reader-header:not(:has(:focus-visible)) { transition: transform 180ms ease-out; }
 }
 
 .reader-toolbar {
