@@ -1,118 +1,100 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Reel History</title>
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			font-family: Arial, sans-serif;
-			font-size: 32px;
-			line-height: 1.5;
-		}
-		
-		header {
-			background-color: #f2f2f2;
-			padding: 30px 10px;
-		}
-		
-		h1, h2, h3, h4, h5, h6 {
-			margin-top: 0;
-			margin-bottom: 0;
-			font-weight: normal;
-		}
-		
-		h1 {
-			font-size: 64px;
-		}
-		
-		h2 {
-			font-size: 48px;
-		}
-		
-		p {
-			margin-top: 10px;
-			margin-bottom: 30px;
-		}
-
-		.statements {
-			background-color: #fff;
-			padding: 20px;
-			margin-top: 30px;
-			margin-bottom: 30px;
-			text-align: center;
-			line-height: 1.5;
-			word-wrap: break-word;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-		}
-		
-		.statements p {
-			margin: 0;
-		}
-		
-		footer {
-			background-color: #f2f2f2;
-			padding: 20px;
-			text-align: center;
-		}
-	</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read Reel History, Stephen Farina’s book about the lost archive of Juma Sultan and the Aboriginal Music Society.">
+  <title>Reel History · Stephen Farina</title>
+  <link rel="stylesheet" href="site.css">
+  <script>
+    if (/^#page\d+$/i.test(location.hash)) {
+      location.replace('reader.html' + location.hash);
+    }
+  </script>
 </head>
 <body>
-	<header>
-		<h1>Reel History</h1>
-		<h2>The Lost Archive of Juma Sultan and the Aboriginal Music Society</h2>
-		<h3>by Stephen Farina</h3>
-		<h4>Wesleyan University Press, 2012</h4>
-		<p>Questions/Inquiries: sdf954@proton.me</p>
-		<div class="statements">
-			<p>In the original ebook each chapter contained a brief audio
-                excerpt from Juma’s Archive and pages 6, 106, and 260
-                contained film excerpts of the Aboriginal Music Society
-                performing live in the early 1970’s.</p>
-		</div>
-        <div id="pageLinks"></div>
-	</header>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="wordmark" href="./">Reel History</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#contents">Contents</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-        <script>
-            for (let i = 0; i <= 320; i++) {
-              document.write('<img src="images/Master Copy_img_' + i + '.jpg" class="page">');
-            }
-        </script>
-	</main>
+  <main id="main">
+    <section class="hero" aria-labelledby="book-title">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">A book by Stephen Farina</p>
+          <h1 id="book-title">Reel<br>History</h1>
+          <p class="subtitle">The Lost Archive of Juma Sultan and the Aboriginal Music Society</p>
+          <div class="hero-actions">
+            <a class="button button-primary" id="continue-reading" hidden>Continue reading</a>
+            <a class="button button-primary" id="start-reading" href="reader.html#page1">Read the book</a>
+          </div>
+          <p class="publication">Wesleyan University Press, 2012</p>
+        </div>
+        <figure class="cover">
+          <div class="cover-mat">
+            <img src="images/Master%20Copy_img_0.jpg" width="792" height="612"
+              alt="Original Reel History cover. An outstretched hand crosses a violet-tinted photograph, framed by black caption boxes.">
+          </div>
+          <figcaption>Original cover</figcaption>
+        </figure>
+      </div>
+    </section>
 
-    <script>
-      // JavaScript code here
-      let links = [
-        {page: 6, label: "Part 1"},
-        {page: 105, label: "Part 2"},
-        {page: 259, label: "Part 3"}
-      ];
+    <section id="contents" class="container contents-section" aria-labelledby="contents-title">
+      <div class="section-heading">
+        <h2 id="contents-title">Contents</h2>
+        <a class="text-link" href="reader.html#page5">View the original contents page</a>
+      </div>
+      <div id="book-contents" class="contents-grid"></div>
+      <noscript><p>Enable JavaScript to use the chapter links and online reader.</p></noscript>
+    </section>
 
-      let pages = document.querySelectorAll('.page');
-      for (let i = 0; i < pages.length; i++) {
-        let pageNumber = i + 1;
-        pages[i].id = `page${pageNumber}`;
+    <section id="about" class="about-section" aria-labelledby="about-title">
+      <div class="container about-inner">
+        <h2 id="about-title">About this edition</h2>
+        <div>
+          <p><cite>Reel History</cite> is available to read free online as a series of scans of the book’s original pages.</p>
+          <p>The original ebook included brief audio excerpts from Juma’s Archive in each chapter. Pages 6, 106, and 260 featured film excerpts of the Aboriginal Music Society performing live in the early 1970s.</p>
+          <p><a class="text-link" href="mailto:sdf954@proton.me">Contact Stephen Farina</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        for (let j = 0; j < links.length; j++) {
-          if (pageNumber === links[j].page) {
-            let link = document.createElement('a');
-            link.href = `#page${pageNumber}`;
-            link.innerText = links[j].label;
-            document.getElementById('pageLinks').appendChild(link);
-            document.getElementById('pageLinks').appendChild(document.createTextNode(' | '));
-            break;
-          }
-        }
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Reel History</span>
+      <span>© 2012 Stephen Farina</span>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { fillContents, readerLink, savedPage } from './book.js';
+    fillContents(document.querySelector('#book-contents'));
+    const resume = document.querySelector('#continue-reading');
+    const start = document.querySelector('#start-reading');
+    function updateReadingLinks() {
+      const page = savedPage();
+      const canResume = Boolean(page && page > 1);
+      resume.hidden = !canResume;
+      start.classList.toggle('button-primary', !canResume);
+      start.classList.toggle('button-outline', canResume);
+      start.textContent = canResume ? 'Start from the cover' : 'Read the book';
+      if (canResume) {
+        resume.href = readerLink(page);
+        resume.setAttribute('aria-label', 'Continue reading from page ' + page);
       }
-    </script>
-	
-	<footer>
-		<p>&copy; 2023</p>
-	</footer>
+    }
+    updateReadingLinks();
+    window.addEventListener('pageshow', updateReadingLinks);
+    window.addEventListener('storage', updateReadingLinks);
+  </script>
 </body>
 </html>
